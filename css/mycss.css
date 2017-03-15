@@ -1,0 +1,19 @@
+h2 {
+    text-align: center;
+}
+
+.centerbtn {
+    margin-left: 32%;
+}
+
+.alignctr{
+    text-align: center;
+}
+
+.margintop{
+    margin-top: 10%;
+}
+
+.bordertop{
+    border-top: none !important;
+}

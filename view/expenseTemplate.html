@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-offset-3 col-md-5">
+        <h2>Expense Tracker
+        </h2>
+        <form name="expenseform" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control" name="expensename" ng-model="expense.name" required
+                       placeholder="Expense" ng-readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" name="amount" ng-model="expense.amount" required
+                       placeholder="Amount">
+            </div>
+            <div class="centerbtn">
+                <input class="btn btn-info" type="submit" ng-disabled="expenseform.$invalid" ng-click="update(expense)" value="Add Expense" ng-hide="addit" />
+                <input class="btn btn-info" type="submit" ng-click="editexp(expense)" value="Edit Expense" ng-show="editit"/>
+                <input class="btn btn-warning " type="button" ng-click="reset()" value="Reset"/>
+            </div>
+
+        </form>
+        <br>
+            <div class="panel panel-default">
+            <!-- Default panel contents -->
+                <div class="panel-heading alignctr"><strong>My Expenditure</strong> <input class="pull-right" type="text" ng-model="searchExpense.name" ng-keyup="filterExpense()"  placeholder="Search"></div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Expense</th>
+                    <th>Amount</th>
+                    <th>Edit/Delete</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="exp in filteredExpense = (expense | filter: searchExpense) track by $index">
+                    <td>{{exp.date | date : "MM.dd.y"}}</td>
+                    <td>{{exp.name}}</td>
+                    <td>{{exp.amount}}</td>
+                    <td><a  href="#" class="glyphicon glyphicon-edit " ng-click="Edit(exp)"></a>
+                       <a  href="#" class="glyphicon glyphicon-trash " ng-click="Delete(exp)"></a></td>
+
+
+                </tr>
+                </tbody>
+
+            </table>
+                <p  class="alignctr" ng-hide="filteredExpense.length">Not found</p>
+            </div>
+        <div class="alignctr" ng-show="searchExpense.name" ng-hide="!searchExpense.name">Filtered Expense={{getExp(filteredExpense)}}</div>
+            <div class="alignctr">Total Expenditure= ${{getExpense()}}</div>
+        </div>
+    </div>
+</div>
